@@ -1,3 +1,5 @@
+#define MAX_STR 20
+
 #include <iostream>
 #include <string>
 
@@ -60,6 +62,7 @@ int main(int argc, char * argv[])
 
     int x;
     int y;
+    int z;
 
     string buff01;
     string str01;
@@ -76,7 +79,7 @@ int main(int argc, char * argv[])
             y=0;
             while(y<4)
             {
-                buff01+=argv[x+y];
+                buff01+=string(argv[x+y]);
 
                 y++;
             };
