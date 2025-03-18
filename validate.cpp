@@ -6,7 +6,7 @@
 #include <string>
 #include <cctype>
 
-bool validate(int a, int b, int c, int d)
+bool validate(std::string buff01)
 {
 
     using namespace std;
@@ -15,23 +15,14 @@ bool validate(int a, int b, int c, int d)
 
     int x;
     int v;
-
     int z;
 
-    string buff01;
     string st;
-
-    buff01.clear();
-
-    buff01+=to_string(a);
-    buff01+=to_string(b);
-    buff01+=to_string(c);
-    buff01+=to_string(d);
 
     z=0;
 
     x=0;
-    while( x<buff01.length())
+    while( x<buff01.length()  )
     {
         st=buff01[x];
         v=stoi(st);
@@ -44,7 +35,7 @@ bool validate(int a, int b, int c, int d)
 
         x++;
         x++;
-    }
+    };
 
     if( (z%10) == 0 )
     {
@@ -61,36 +52,35 @@ bool validate(int a, int b, int c, int d)
 int main(int argc, char * argv[])
 {
     using namespace std;
-    int num[4];
 
     int x;
     int y;
-    int z;
 
     string buff01;
-    string str01;
 
     if(argc>1)
     {
-        x=0;
-        y=0;
 
-        while(x<=argc)
+        x=1;
+
+        while(x<argc)
         {
+            buff01.clear();
+
             y=0;
             while(y<4)
             {
-                buff01=argv[x+y];
-                num[y]=stoi(buff01);
+                buff01+=string(argv[x+y] );
                 y++;
             };
 
-            if( (validate(num[0], num[1], num[2], num[3]) ) == true )
+            if( (validate(buff01 ) ) == true )
             {
-                cout<<num[0]<<" ";
-                cout<<num[1]<<" ";
-                cout<<num[2]<<" ";
-                cout<<num[3]<<endl;
+                cout<<argv[x]<<" ";
+                cout<<argv[x+1]<<" ";
+                cout<<argv[x+2]<<" ";
+                cout<<argv[x+3]<<" ";
+                cout<<endl;
             }else
             {
 
@@ -100,7 +90,6 @@ int main(int argc, char * argv[])
 
         };
         
-
     }else
     {
 
