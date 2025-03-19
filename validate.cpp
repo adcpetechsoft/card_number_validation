@@ -15,29 +15,41 @@ bool validate(std::string buff01)
 
     int x;
     int v;
-    int z;
+
+    int i;
+    int j;
+    int k;
 
     string st;
 
-    z=0;
+    i=0;
+    j=0;
+    k=0;
 
     x=0;
     while( x<buff01.length()  )
     {
         st=buff01[x];
         v=stoi(st);
-
-        z=z+(v*v);
+        v=v*2;
+        if(v>9)
+        {
+            v=v-9;
+        };
+        i=i+v;
 
         st=buff01[x+1];
         v=stoi(st);
-        z=z+(v);
+        j=j+v;
 
         x++;
         x++;
     };
 
-    if( (z%10) == 0 )
+    k=i+j;
+
+
+    if( (k%10) == 0 )
     {
         res=true;
     }else
@@ -76,7 +88,6 @@ int main(int argc, char * argv[])
 
             if( (validate(buff01 ) ) == true )
             {
-                cout<<"OK: ";
                 cout<<argv[x]<<" ";
                 cout<<argv[x+1]<<" ";
                 cout<<argv[x+2]<<" ";
