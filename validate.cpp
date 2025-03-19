@@ -1,11 +1,27 @@
+/*
+    card_number_validation program
+    As a submission for https://code.golf/card-number-validation#cpp
+
+    Note: Program work well during on main system but 
+    bugs and error encountered on submit.
+
+    Created by: amd
+*/
+
+// ---------------------------------
+// Preprocessor Declaration
 #define SIZE_CARD 16
 
 #include <iostream>
 #include <string>
 
+// ---------------------------------
+// validate function declaration
 bool validate(std::string buff01)
 {
 
+    // ***********************
+    // Variable Declaration
     using namespace std;
 
     bool res;
@@ -21,6 +37,10 @@ bool validate(std::string buff01)
 
     string st;
 
+    // ***********************
+    // Actual function
+
+    // transfer from string to integer variables
     x=0;
     while(x<SIZE_CARD)
     {
@@ -31,10 +51,11 @@ bool validate(std::string buff01)
         x++;
     };
 
+
+    // test and calculate the card validity
     i=0;
     j=0;
     k=0;
-
 
     x=0;
     while(x<SIZE_CARD)
@@ -55,6 +76,8 @@ bool validate(std::string buff01)
 
     k=i+j;
 
+    // testing the result
+
     if( (k%10) == 0)
     {
         res=true;
@@ -67,8 +90,14 @@ bool validate(std::string buff01)
 
 };
 
+
+// ---------------------------------
+// Progran  Entry Point
 int main(int argc, char * argv[])
 {
+    
+     // ***********************
+    // Variable Declaration
     using namespace std;
 
     int x;
@@ -76,15 +105,24 @@ int main(int argc, char * argv[])
 
     string buff01;
 
+    
+    // ***********************
+    // Actual Procedure
+
+    // test for inputed arg.
     if(argc>1)
     {
 
+        // situation if with arg input
+
         x=1;
 
+        // testing for all arg input
         while(x<argc)
         {
             buff01.clear();
 
+            // transfer from arg to string
             y=0;
             while(y<4)
             {
@@ -92,6 +130,8 @@ int main(int argc, char * argv[])
                 y++;
             };
 
+            // test string for card validity
+            // then display if valid
             if( (validate(buff01 ) ) == true )
             {
                 cout<<argv[x]<<" ";
@@ -101,6 +141,7 @@ int main(int argc, char * argv[])
                 cout<<endl;
             }else
             {
+                // Situation if card is invalid
 
             };
 
@@ -110,9 +151,11 @@ int main(int argc, char * argv[])
         
     }else
     {
+        // if no arg input
+        cout<<"No Card Number Input..."<<endl;
 
     };
 
     return 0;
 
-}
+};
