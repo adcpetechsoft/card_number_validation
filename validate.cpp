@@ -1,10 +1,7 @@
-#define DIVISION_MIN 4
-#define P_OK 0
-#define P_INVALID 15
+#define SIZE_CARD 16
 
 #include <iostream>
 #include <string>
-#include <cctype>
 
 bool validate(std::string buff01)
 {
@@ -12,6 +9,8 @@ bool validate(std::string buff01)
     using namespace std;
 
     bool res;
+
+    int card[SIZE_CARD];
 
     int x;
     int v;
@@ -22,40 +21,47 @@ bool validate(std::string buff01)
 
     string st;
 
+    x=0;
+    while(x<SIZE_CARD)
+    {
+        st[0]=buff01[x];
+        st[1]='\0';
+        card[x]=stoi(st);
+
+        x++;
+    };
+
     i=0;
     j=0;
     k=0;
 
+
     x=0;
-    while( x<buff01.length()  )
+    while(x<SIZE_CARD)
     {
-        st=buff01[x];
-        v=stoi(st);
-        v=v*2;
+
+        v=( (card[x]) *2 );
         if(v>9)
         {
             v=v-9;
         };
         i=i+v;
-
-        st=buff01[x+1];
-        v=stoi(st);
-        j=j+v;
+        j=j+((card[x+1]));
 
         x++;
         x++;
+
     };
 
     k=i+j;
 
-
-    if( (k%10) == 0 )
+    if( (k%10) == 0)
     {
         res=true;
     }else
     {
         res=false;
-    };
+    }
 
     return res;
 
