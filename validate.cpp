@@ -76,6 +76,7 @@ int main(int argc, char * argv[])
 
             if( (validate(buff01 ) ) == true )
             {
+                cout<<"OK: ";
                 cout<<argv[x]<<" ";
                 cout<<argv[x+1]<<" ";
                 cout<<argv[x+2]<<" ";
