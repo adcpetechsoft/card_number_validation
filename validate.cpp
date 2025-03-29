@@ -11,20 +11,24 @@
 // ---------------------------------
 // Preprocessor Declaration
 #define SIZE_CARD 16
+#define STR_SIZE 20
 
-#include <iostream>
-#include <string>
+#define P_OK 0
+#define P_ERR_VAL -10
+#define P_ERR_NUM -20
+
+#include <stdio.h>
+#include <string.h>
 
 // ---------------------------------
 // validate function declaration
-bool validate(std::string buff01)
+int validate(char buff01[STR_SIZE])
 {
 
     // ***********************
     // Variable Declaration
-    using namespace std;
 
-    bool res;
+    int res;
 
     int card[SIZE_CARD];
 
@@ -35,7 +39,7 @@ bool validate(std::string buff01)
     int j;
     int k;
 
-    string st;
+    char st[5];
 
     // ***********************
     // Actual function
@@ -45,8 +49,8 @@ bool validate(std::string buff01)
     while(x<SIZE_CARD)
     {
         st[0]=buff01[x];
-        st[1]='\0';
-        card[x]=stoi(st);
+        st[1]=EOF;
+        sscanf(st, "%i", &card[x]);
 
         x++;
     };
@@ -80,10 +84,10 @@ bool validate(std::string buff01)
 
     if( (k%10) == 0)
     {
-        res=true;
+        res=P_OK;
     }else
     {
-        res=false;
+        res=P_ERR_VAL;
     }
 
     return res;
@@ -96,14 +100,13 @@ bool validate(std::string buff01)
 int main(int argc, char * argv[])
 {
     
-     // ***********************
+    // ***********************
     // Variable Declaration
-    using namespace std;
 
     int x;
     int y;
 
-    string buff01;
+    char buff01[STR_SIZE];
 
     
     // ***********************
@@ -114,45 +117,41 @@ int main(int argc, char * argv[])
     {
 
         // situation if with arg input
-
         x=1;
 
         // testing for all arg input
         while(x<argc)
         {
-            buff01.clear();
+            memset(buff01, '\0', sizeof(buff01));
 
             // transfer from arg to string
-            y=0;
-            while(y<4)
-            {
-                buff01+=string(argv[x+y] );
-                y++;
-            };
+
+            snprintf(buff01, sizeof(buff01), "%s%s%s%s", argv[x], argv[x+1], argv[x+2], argv[x+3]);
+            
 
             // test string for card validity
             // then display if valid
-            if( (validate(buff01 ) ) == true )
+            if( (validate(buff01 ) ) == P_OK )
             {
-                cout<<argv[x]<<" ";
-                cout<<argv[x+1]<<" ";
-                cout<<argv[x+2]<<" ";
-                cout<<argv[x+3]<<" ";
-                cout<<endl;
+                printf("%s %s %s %s\n", argv[x], argv[x+1],  argv[x+2], argv[x+3]);
+
             }else
             {
                 // Situation if card is invalid
 
             };
 
-            x=x+4;
+            x++;
+            x++;
+            x++;
+            x++;
 
         };
         
     }else
     {
         // if no arg input
-        cout<<"No Card Number Input..."<<endl;
+        printf("No Card Number Input...\n");
 
     };
 
