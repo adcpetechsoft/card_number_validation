@@ -49,7 +49,7 @@ int validate(char buff01[STR_SIZE])
     while(x<SIZE_CARD)
     {
         st[0]=buff01[x];
-        st[1]='\0';
+        st[1]=EOF;
         sscanf(st, "%i", &card[x]);
 
         x++;
@@ -120,7 +120,7 @@ int main(int argc, char * argv[])
         x=1;
 
         // testing for all arg input
-        while(x<argc && (x%4)==0  )
+        while(x<argc)
         {
             memset(buff01, '\0', sizeof(buff01));
 
@@ -141,7 +141,10 @@ int main(int argc, char * argv[])
 
             };
 
-            x=x+4;
+            x++;
+            x++;
+            x++;
+            x++;
 
         };
         
